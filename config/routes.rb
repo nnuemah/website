@@ -1,11 +1,13 @@
 Website::Application.routes.draw do
-  resources :comments
 
+  resources :conversations do
+    resources :comments
+  end
 
-  resources :conversations
-
+  root :to => "conversations#index"
 
   resources :users
+
 
 
   # The priority is based upon order of creation:
