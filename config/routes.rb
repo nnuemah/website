@@ -1,4 +1,10 @@
 Website::Application.routes.draw do
+  resources :comments
+
+
+  resources :conversations
+
+
   resources :users
 
 
