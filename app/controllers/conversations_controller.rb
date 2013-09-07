@@ -25,6 +25,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/new.json
   def new
     @conversation = Conversation.new
+    @comment = @conversation.comments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class ConversationsController < ApplicationController
   # POST /conversations.json
   def create
     @conversation = Conversation.new(params[:conversation])
+    @comment = @conversation.comments.build(params[:comment])
 
     respond_to do |format|
       if @conversation.save
@@ -49,6 +51,37 @@ class ConversationsController < ApplicationController
       else
         format.html { render action: "new" }
         format.json { render json: @conversation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # GET /conversations/1/reply
+  # GET /conversations/1/reply.json
+  def reply
+    @conversation = Conversation.find(params[:id])
+    @comment = @conversation.comments.build
+
+    respond_to do |format|
+      format.html # reply.html.erb
+      format.json { render json: @conversation }
+    end
+  end
+
+  # POST /conversations/1/reply
+  # POST /conversations/1/reply.json
+  def save_reply
+    if Conversation.exists?(params[:id])
+      @conversation = Conversation.find(params[:id])
+      @comment = @conversation.comments.build(params[:comment])
+    else
+      redirect_to(conversations_path, :notice => "Please select a valid conversation")
+    end
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to(conversations_path(@conversation), :notice => "Your comment was posted")}
+      else
+        format.html {render :action => "new"}
       end
     end
   end

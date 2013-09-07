@@ -2,7 +2,7 @@
 
 <p>
   <b>User:</b>
-  <%= @conversation.user_id %>
+  <%= @conversation.user.name %>
 </p>
 
 <p>
@@ -10,5 +10,30 @@
 </p>
 
 
-<%= link_to 'Edit', edit_conversation_path(@conversation) %> |
+<%= link_to 'Edit', edit_conversation_path(@conversation) %>
 <%= link_to 'Back', conversations_path %>
+
+<table>
+  <tr>
+    <th colspan="2">Comments</th>
+  </tr>
+  <% comments_list = @conversation.comments  %>
+
+  <% comments_list.each do |comment| %>
+    <tr>
+      <td style="width:25;">
+        <b>User: </b>
+        <%= link_to comment.user.name, comment.user %> <br />
+        <b>Posted at:</b> <br />
+        <%= comment.created_at %>
+      </td>
+    <td>
+        <%= comment.body %>
+        <%= link_to 'Edit', edit_conversation_comment_path(comment) %>
+        <%= link_to 'Delete', conversation_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+    </tr>
+<% end %>
+
+</table>
+<%= link_to 'Reply', new_conversation_comment_path(@conversation) %>
