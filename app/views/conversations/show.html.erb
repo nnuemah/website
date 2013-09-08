@@ -29,8 +29,8 @@
       </td>
     <td>
         <%= comment.body %>
-        <%= link_to 'Edit', edit_conversation_comment_path(comment) %>
-        <%= link_to 'Delete', conversation_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Edit', edit_conversation_comment_path(@conversation, comment) %>
+        <%= button_to 'Delete', conversation_comment_path(@conversation, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
     </td>
     </tr>
 <% end %>

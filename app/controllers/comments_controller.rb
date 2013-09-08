@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    #@conversation = Conversation.find(params[:conversation_id])
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
@@ -24,7 +25,8 @@ class CommentsController < ApplicationController
   # GET /comments/new
   # GET /comments/new.json
   def new
-    @comment = Comment.new
+    @conversation = Conversation.find(params[:conversation_id])
+    @comment = @conversation.comments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +36,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @conversation = Conversation.find(params[:conversation_id])
     @comment = Comment.find(params[:id])
   end
 
@@ -56,6 +59,7 @@ class CommentsController < ApplicationController
   # PUT /comments/1
   # PUT /comments/1.json
   def update
+    @conversation = Conversation.find(params[:conversation_id])
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
@@ -72,11 +76,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @conversation = Conversation.find(params[:conversation_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to conversation_comments_url }
+      format.html { redirect_to conversation_url(@conversation) }
       format.json { head :no_content }
     end
   end
