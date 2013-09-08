@@ -12,6 +12,7 @@
 
 <%= link_to 'Edit', edit_conversation_path(@conversation) %>
 <%= link_to 'Back', conversations_path %>
+<%= button_to 'Delete', conversation_path(@conversation), method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <table>
   <tr>
