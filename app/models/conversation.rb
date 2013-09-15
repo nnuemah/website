@@ -2,7 +2,7 @@ class Conversation < ActiveRecord::Base
   attr_accessible :content, :id, :title, :user_id
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, :dependent => :delete_all
 
   validates_presence_of :title
   validates_presence_of :content
