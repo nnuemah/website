@@ -8,7 +8,7 @@ class CommentsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:comments)
+    assert_not_nil assigns(:comment)
   end
 
   test "should get new" do
@@ -18,10 +18,10 @@ class CommentsControllerTest < ActionController::TestCase
 
   test "should create comment" do
     assert_difference('Comment.count') do
-      post :create, comment: { body: @comment.body, conversation_id: @comment.conversation_id, id: @comment.id, user_id: @comment.user_id }
+      post :create, comment: { body: @comment.body, conversation_id: @comment.conversation_id, id: @comment.id }
     end
 
-    assert_redirected_to comment_path(assigns(:comment))
+    assert_redirected_to :controller => "conversation", :action => "show"
   end
 
   test "should show comment" do
@@ -35,8 +35,8 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   test "should update comment" do
-    put :update, id: @comment, comment: { body: @comment.body, conversation_id: @comment.conversation_id, id: @comment.id, user_id: @comment.user_id }
-    assert_redirected_to comment_path(assigns(:comment))
+    put :update, id: @comment, comment: { body: @comment.body, conversation_id: @comment.conversation_id, id: @comment.id}
+    assert_redirected_to :controller => "comment", :action => "show"
   end
 
   test "should destroy comment" do
@@ -44,6 +44,6 @@ class CommentsControllerTest < ActionController::TestCase
       delete :destroy, id: @comment
     end
 
-    assert_redirected_to comments_path
+    assert_redirected_to :controller => "conversation", :action => "show"
   end
 end

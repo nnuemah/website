@@ -1,11 +1,6 @@
 <p id="page_title"><%= @conversation.title%></p>
 
 <p>
-  <b>User:</b>
-  <%= @conversation.user.name %>
-</p>
-
-<p>
   <%= @conversation.content %>
 </p>
 
@@ -23,8 +18,6 @@
   <% comments_list.each do |comment| %>
     <tr>
       <td style="width:25;">
-        <b>User: </b>
-        <%= link_to comment.user.name, comment.user %> <br />
         <b>Posted at:</b> <br />
         <%= comment.created_at %>
       </td>

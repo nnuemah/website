@@ -7,6 +7,7 @@ class ConversationsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @conversations }
+      format.xml  { render :xml => @conversations }
     end
   end
 
@@ -18,6 +19,7 @@ class ConversationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @conversation }
+      format.xml  { render :xml => @conversation }
     end
   end
 
@@ -29,6 +31,7 @@ class ConversationsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @conversation }
+      format.xml  { render :xml => @conversation }
     end
   end
 

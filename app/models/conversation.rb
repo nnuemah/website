@@ -1,7 +1,6 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :content, :id, :title, :user_id
-
-  belongs_to :user
+  attr_accessible :content, :id, :title
+  validates_uniqueness_of :id
   has_many :comments, :dependent => :delete_all
 
   validates_presence_of :title

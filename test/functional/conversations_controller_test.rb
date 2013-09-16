@@ -18,7 +18,7 @@ class ConversationsControllerTest < ActionController::TestCase
 
   test "should create conversation" do
     assert_difference('Conversation.count') do
-      post :create, conversation: { content: @conversation.content, id: @conversation.id, title: @conversation.title, user_id: @conversation.user_id }
+      post :create, conversation: { content: @conversation.content, id: @conversation.id, title: @conversation.title}
     end
 
     assert_redirected_to conversation_path(assigns(:conversation))
@@ -35,7 +35,7 @@ class ConversationsControllerTest < ActionController::TestCase
   end
 
   test "should update conversation" do
-    put :update, id: @conversation, conversation: { content: @conversation.content, id: @conversation.id, title: @conversation.title, user_id: @conversation.user_id }
+    put :update, id: @conversation, conversation: { content: @conversation.content, id: @conversation.id, title: @conversation.title }
     assert_redirected_to conversation_path(assigns(:conversation))
   end
 

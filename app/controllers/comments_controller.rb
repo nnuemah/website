@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }
+      format.xml  { render :xml => @comments }
     end
   end
 
@@ -19,6 +20,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @comment }
+      format.xml  { render :xml => @comment }
     end
   end
 
@@ -31,6 +33,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
+      format.xml  { render :xml => @comment }
     end
   end
 

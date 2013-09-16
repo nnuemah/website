@@ -7,6 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
+gem 'ruby-prof', :git => 'git://github.com/wycats/ruby-prof.git'
+gem 'test-unit'
 
 # Gems used only for assets and not required
 # in production environments by default.
